@@ -26,6 +26,9 @@ public class StudentManager : MonoBehaviour
 
     private float TimeAccumulated = 0;
 
+    private Animator myAnimator;
+
+
     // Use this for initialization
     void Start () {
         var temp_neighbours = new List<GameObject>(GameObject.FindGameObjectsWithTag("Student"));
@@ -42,6 +45,8 @@ public class StudentManager : MonoBehaviour
         {
             Debug.LogError("Probabilities summed > 100%");
         }
+
+        myAnimator = GetComponentInChildren<Animator>();
 
     }
 
@@ -82,6 +87,8 @@ public class StudentManager : MonoBehaviour
         var temp = InteractingWith;
         InteractingWith = null;
         if(temp!=null) temp.GetComponent<StudentManager>().StopCopying();
+
+        myAnimator.SetBool("send", false);
     }
 
     private void TryToCopy()
@@ -132,11 +139,72 @@ public class StudentManager : MonoBehaviour
         return !Sending && !Receiving && !Questioning;
     }
 
-    private void SendCopy(StudentManager otherCheater) {
+    private void SendCopy(StudentManager otherCheater)
+    {
         otherCheater.GiveMeCheat(this.gameObject, TimeToSendAnswer);
         Sending = true;
         InteractingWith = otherCheater.gameObject;
         this.CopyRemainingTime = TimeToSendAnswer;
+
+        SendAnimation();
+
+    }
+
+    private void SendAnimation()
+    {
+        var direction = InteractingWith.gameObject.transform.position - this.gameObject.transform.position;
+        var back = direction.z > 0;
+        var forward = direction.z < 0;
+        var right = direction.x < 0;
+        var left = direction.x > 0;
+
+        Debug.Log(this.gameObject.name + back + right);
+        if (back)
+        {
+
+        }
+        else if (forward)
+        {
+
+        }
+        else if (right)
+        {
+
+        }
+        else if (left)
+        {
+            //myAnimator.SetBool("send", true);
+
+        }
+    }
+
+    private void ReceiveAnimation()
+    {
+        var direction = InteractingWith.gameObject.transform.position - this.gameObject.transform.position;
+        var back = direction.z > 0;
+        var forward = direction.z < 0;
+        var right = direction.x < 0;
+        var left = direction.x > 0;
+
+        Debug.Log(this.gameObject.name + back + right);
+        if (back)
+        {
+
+        }
+        else if (forward)
+        {
+            myAnimator.SetBool("send", true);
+
+        }
+        else if (right)
+        {
+
+        }
+        else if (left)
+        {
+            //myAnimator.SetBool("send", true);
+
+        }
     }
 
     private void GiveMeCheat(GameObject sender, int timeToWaitCopy)
@@ -144,6 +212,7 @@ public class StudentManager : MonoBehaviour
         Receiving = true;
         InteractingWith = sender;
         CopyRemainingTime = timeToWaitCopy;
+        ReceiveAnimation();
     }
 
 
@@ -195,8 +264,11 @@ public class StudentManager : MonoBehaviour
         else if (Receiving)
         {
             Handles.color = Color.yellow;
+
+
         } else if (Sending) {
             Handles.color = Color.blue;
+          
         }
          else
         {
