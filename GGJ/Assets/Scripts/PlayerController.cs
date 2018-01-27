@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public int PlayerSpeed = 2;
-    public Rigidbody rb;
+    public int PlayerSpeed = 20;
+    private Rigidbody rb;
 
 	// Use this for initialization
 	void Start ()
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
         //float hor_axis = Input.GetAxisRaw("Horizontal");
         //float ver_axis = Input.GetAxisRaw("Vertical");
