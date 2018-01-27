@@ -16,6 +16,8 @@ public class StudentManager : MonoBehaviour
     public int QuestionProbability = 13;
     public int TimeToSendAnswer = 3;
 
+    //public GameObject gameManagerOBJ;
+    private GameManager gameManager;
     public GameObject QuestionManagerGameObject;
     private Question Question;
     private List<GameObject> _neighbours = new List<GameObject>();
@@ -57,12 +59,17 @@ public class StudentManager : MonoBehaviour
         {
             Debug.LogError("Student " + this.gameObject.name+ "Without Question Manager");
         }
+
+        gameManager = FindObjectOfType< GameManager>();
+        if (gameManager == null) {
+            Debug.LogError("Student " + this.gameObject.name + "Without Game Manager");
+        }
     }
 
     public bool CanCopy()
 
     {
-        return nearTeacher == 0 && !Receiving && !Sending && Question.CanQuestion();
+        return nearTeacher == 0 && !Receiving && !Sending && !Question.Questioning() && gameManager.CanCopy();
     }
 
     private float DistanceToMe(GameObject other)
@@ -91,6 +98,10 @@ public class StudentManager : MonoBehaviour
 
     private void StopCopying()
     {
+        if (Sending)
+        {
+            gameManager.StopCopy();
+        }
         Receiving = false;
         Sending = false;
         var temp = InteractingWith;
@@ -101,6 +112,7 @@ public class StudentManager : MonoBehaviour
         myAnimator.SetBool("toBack", false);
         myAnimator.SetBool("toLeft", false);
         myAnimator.SetBool("toRight", false);
+
     }
 
     private void TryToCopy()
@@ -137,22 +149,26 @@ public class StudentManager : MonoBehaviour
         probability_sum += CopyProbability;
         if (CanQuestion())
         {
-            if (probability_sum < probability && probability <= probability_sum+QuestionProbability)
-            {
+            if (probability_sum < probability && probability <= probability_sum+QuestionProbability) {
                 //Debug.Log(""+this.gameObject.name + " started question");
-                Question.ActivateQuestion();
+                AskQuestion();
                 //Questioning = true;
             }
         }
     }
 
+    private void AskQuestion() {
+        Question.ActivateQuestion();
+    }
+
     private bool CanQuestion()
     {
-        return !Sending && !Receiving && Question.CanQuestion();
+        return !Sending && !Receiving && Question.CanQuestion() ;
     }
 
     private void SendCopy(StudentManager otherCheater)
     {
+        gameManager.ActivateCopy();
         otherCheater.GiveMeCheat(this.gameObject, TimeToSendAnswer);
         Sending = true;
         InteractingWith = otherCheater.gameObject;
@@ -227,7 +243,6 @@ public class StudentManager : MonoBehaviour
         ReceiveAnimation();
     }
 
-
     public void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag.Equals("RangeCopyCollider"))
@@ -251,6 +266,7 @@ public class StudentManager : MonoBehaviour
         //var teacher_script = teacher.GetComponent<PlayerController>();
         teacher_script.Bust(this);
         StopCopying();
+        this.gameManager.BustStudent();
     }
 
     public void OnTriggerExit(Collider col) {

@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
     public void Bust(StudentManager studentManager)
     {
         BustedStudents++;
-        Debug.Log("Busted: " + BustedStudents + " students");
     }
 
 }

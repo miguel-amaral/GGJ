@@ -14,6 +14,11 @@ namespace Assets.Scripts {
         private float RemainingTimeForDisappear;
         public float MaxTimeQuestionDisappear;
 
+
+
+        //public GameObject gameManagerOBJ;
+        private GameManager gameManager;
+
         public GameObject GREEN_QUESTION;
         public GameObject YELLOW_QUESTION;
         public GameObject RED_QUESTION;
@@ -29,6 +34,11 @@ namespace Assets.Scripts {
         {
             State = new NoQuestion();
             this.UpdateStateObjs();
+
+            gameManager = FindObjectOfType<GameManager>();
+            if (gameManager == null) {
+                Debug.LogError("Question " + this.gameObject.name + "Without Game Manager");
+            }
         }
         public void Update()
         {
@@ -78,10 +88,12 @@ namespace Assets.Scripts {
             State = new GreenQuestion();
             UpdateStateObjs();
             this.transform.localScale = new Vector3(1, 1, 1);
+            gameManager.ActivateQuestion();
         }
 
-        private void QuestionSolved() {
-            Debug.Log("Question Solved");
+        private void QuestionSolved()
+        {
+            this.gameManager.QuestionSolved();
             this.StopQuestion();
             //throw new NotImplementedException();
         }
@@ -91,13 +103,15 @@ namespace Assets.Scripts {
             this.State.DeactivateGameObj();
             this.State = new NoQuestion();
             _questioning = false;
+            gameManager.StopQuestions();
             //throw new NotImplementedException();
         }
 
         public void QuestionTimeUp()
         {
-            Debug.Log("Question Time Up");
+            this.gameManager.QuestionTimeUp();
             this.StopQuestion();
+            
             //throw new NotImplementedException();
         }
         public void OnTriggerEnter(Collider col) {
@@ -120,7 +134,12 @@ namespace Assets.Scripts {
 
         public bool CanQuestion()
         {
-            return !_questioning;
+            return !_questioning && gameManager.CanQuestion();
+        }
+
+        public bool Questioning()
+        {
+            return _questioning;
         }
     }
 }
