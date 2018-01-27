@@ -7,13 +7,16 @@ public class PlayerController : MonoBehaviour
     public int PlayerSpeed = 20;
     private Rigidbody rb;
     public int BustedStudents { get; set; }
+    private Animator teacherAnimator;
 
     // Use this for initialization
     void Start ()
 	{
 	    this.rb = this.gameObject.GetComponent<Rigidbody>();
 	    BustedStudents = 0;
-	}
+        teacherAnimator = GetComponent<Animator>();
+
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -32,6 +35,10 @@ public class PlayerController : MonoBehaviour
 	    if (!direction.Equals(Vector3.zero))
 	    {
 	        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.15F);
+            teacherAnimator.SetBool("walk", true);
+        } else
+        {
+            teacherAnimator.SetBool("walk", false);
         }
 
 
