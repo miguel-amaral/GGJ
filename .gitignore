@@ -301,7 +301,6 @@ __pycache__/
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
-
 # Visual Studio 2015 cache directory
 .vs/
 
@@ -464,3 +463,8 @@ sysinfo.txt
 
 
 # End of https://www.gitignore.io/api/unity,csharp,visualstudio
+
+
+
+
+!Assets/*.meta
