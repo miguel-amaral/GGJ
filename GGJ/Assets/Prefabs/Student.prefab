@@ -125,5 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CheatingRadius: 66
   TryToCopyEveryAmountOfSeconds: 2
-  CopyProbability: 13
+  CopyProbability: 15
+  QuestionProbability: 10
   TimeToSendAnswer: 3

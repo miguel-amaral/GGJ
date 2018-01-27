@@ -12,6 +12,7 @@ public class StudentManager : MonoBehaviour
     public int CheatingRadius = 50;
     public int TryToCopyEveryAmountOfSeconds = 0;
     public int CopyProbability = 13;
+    public int QuestionProbability = 13;
     public int TimeToSendAnswer = 3;
     private List<GameObject> _neighbours = new List<GameObject>();
 
@@ -19,6 +20,8 @@ public class StudentManager : MonoBehaviour
 
     private bool Receiving = false;
     private bool Sending = false;
+    private bool Questioning = false;
+
     private GameObject InteractingWith = null;
 
     private float TimeAccumulated = 0;
@@ -35,12 +38,17 @@ public class StudentManager : MonoBehaviour
             }
         }
 
+        if (CopyProbability + QuestionProbability > 100)
+        {
+            Debug.LogError("Probabilities summed > 100%");
+        }
+
     }
 
     public bool CanCopy()
 
     {
-        return nearTeacher == 0 && !Receiving && !Sending;
+        return nearTeacher == 0 && !Receiving && !Sending && !Questioning;
     }
 
     private float DistanceToMe(GameObject other)
@@ -78,11 +86,12 @@ public class StudentManager : MonoBehaviour
 
     private void TryToCopy()
     {
+        var probability = Random.Range(0, 99);
+        var probability_sum = 0;
         var tempNeighbours = new List<StudentManager>();
         if (CanCopy())
         {
-            var result = Random.Range(0, 99);
-            if (result < CopyProbability)
+            if (probability < CopyProbability)
             {
                 foreach (var neighbour in _neighbours)
                 {
@@ -98,7 +107,7 @@ public class StudentManager : MonoBehaviour
 
                     var otherCheater = tempNeighbours.ElementAt(index);
                     SendCopy(otherCheater);
-                    Debug.Log(this.gameObject.name + " " + InteractingWith.gameObject.name);
+                    //Debug.Log(this.gameObject.name + " " + InteractingWith.gameObject.name);
                 } else
                 {
                     TimeAccumulated += TryToCopyEveryAmountOfSeconds / 2.0f;
@@ -106,9 +115,21 @@ public class StudentManager : MonoBehaviour
 
                 
             }
-
-            //tempNeighbours./*get*/
         }
+
+        probability_sum += CopyProbability;
+        if (CanQuestion())
+        {
+            if (probability_sum < probability && probability <= probability_sum+QuestionProbability)
+            {
+                Questioning = true;
+            }
+        }
+    }
+
+    private bool CanQuestion()
+    {
+        return !Sending && !Receiving && !Questioning;
     }
 
     private void SendCopy(StudentManager otherCheater) {
@@ -130,9 +151,28 @@ public class StudentManager : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Professor"))
         {
-            Debug.Log(this.gameObject.name + "enter colision");
             nearTeacher++;
+            if (Sending || Receiving)
+            {
+                Busted(col.gameObject);
+            }
         }
+    }
+
+    public void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.tag.Equals("Professor"))
+        {
+            Questioning = false;
+
+        }
+    }
+
+    private void Busted(GameObject teacher)
+    {
+        var teacher_script = teacher.GetComponent<PlayerController>();
+        teacher_script.Bust(this);
+        StopCopying();
     }
 
     public void OnTriggerExit(Collider col) {
@@ -141,8 +181,13 @@ public class StudentManager : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
-    {
+    void OnDrawGizmos() {
+        if (Questioning)
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawSphere(this.transform.position + new Vector3(0, 10, 0), 3);
+        }
+
         if (nearTeacher > 0)
         {
             Handles.color = Color.red;
@@ -153,15 +198,19 @@ public class StudentManager : MonoBehaviour
         } else if (Sending) {
             Handles.color = Color.blue;
         }
-        else
+         else
         {
             Handles.color = Color.green;
         }
         Handles.DrawWireDisc(this.transform.position, Vector3.up, 10);
         
-        if (InteractingWith != null)
+        if (InteractingWith != null && Sending)
         {
-            Gizmos.DrawLine(this.transform.position, InteractingWith.transform.position);
+            Gizmos.color=Color.white;
+            float percentage = (TimeToSendAnswer - CopyRemainingTime )/ TimeToSendAnswer;
+            var direction = InteractingWith.gameObject.transform.position - this.transform.position;
+            var vector_percentage = direction * percentage; 
+            Gizmos.DrawLine(this.transform.position, this.transform.position+vector_percentage);
         }
         //Gizmos.color = Color.black;
         //foreach (var neighbour in _neighbours)

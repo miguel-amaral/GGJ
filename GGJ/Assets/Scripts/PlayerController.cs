@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public int PlayerSpeed = 20;
     private Rigidbody rb;
+    public int BustedStudents { get; set; }
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
 	    this.rb = this.gameObject.GetComponent<Rigidbody>();
+	    BustedStudents = 0;
 	}
 	
 	// Update is called once per frame
@@ -44,4 +46,16 @@ public class PlayerController : MonoBehaviour
 	    //this.transform.rotation.to
 
 	}
+
+    void OnTriggerEnter(Collider col)
+    {
+
+    }
+
+    public void Bust(StudentManager studentManager)
+    {
+        BustedStudents++;
+        Debug.Log("Busted: " + BustedStudents + " students");
+    }
+
 }
