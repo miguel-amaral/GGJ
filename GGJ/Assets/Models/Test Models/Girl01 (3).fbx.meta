@@ -1,0 +1,257 @@
+fileFormatVersion: 2
+guid: 2f30cee453428aa4c9000b6ff754128c
+timeCreated: 1517071951
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: body
+    100002: clothing
+    100004: Game_Head
+    100006: Game_Head_end
+    100008: Game_Hips
+    100010: Game_LeftArm
+    100012: Game_LeftFoot
+    100014: Game_LeftFoot_end
+    100016: Game_LeftForeArm
+    100018: Game_LeftHand
+    100020: Game_LeftHandIndex1
+    100022: Game_LeftHandIndex2
+    100024: Game_LeftHandIndex2_end
+    100026: Game_LeftHandMiddle1
+    100028: Game_LeftHandMiddle2
+    100030: Game_LeftHandMiddle2_end
+    100032: Game_LeftHandThumb1
+    100034: Game_LeftHandThumb2
+    100036: Game_LeftHandThumb2_end
+    100038: Game_LeftLeg
+    100040: Game_LeftShoulder
+    100042: Game_LeftUpLeg
+    100044: Game_Neck
+    100046: Game_RightArm
+    100048: Game_RightFoot
+    100050: Game_RightFoot_end
+    100052: Game_RightForeArm
+    100054: Game_RightHand
+    100056: Game_RightHandIndex1
+    100058: Game_RightHandIndex2
+    100060: Game_RightHandIndex2_end
+    100062: Game_RightHandMiddle1
+    100064: Game_RightHandMiddle2
+    100066: Game_RightHandMiddle2_end
+    100068: Game_RightHandThumb1
+    100070: Game_RightHandThumb2
+    100072: Game_RightHandThumb2_end
+    100074: Game_RightLeg
+    100076: Game_RightShoulder
+    100078: Game_RightUpLeg
+    100080: Game_Spine
+    100082: Game_Spine1
+    100084: Game_Spine2
+    100086: //RootNode
+    100088: hair02
+    100090: Porta
+    100092: Quadro
+    100094: Quadro.001
+    100096: Quadro.002
+    100098: Sala
+    100100: Sala.001
+    100102: Table.016
+    100104: woman_blouse
+    400000: body
+    400002: clothing
+    400004: Game_Head
+    400006: Game_Head_end
+    400008: Game_Hips
+    400010: Game_LeftArm
+    400012: Game_LeftFoot
+    400014: Game_LeftFoot_end
+    400016: Game_LeftForeArm
+    400018: Game_LeftHand
+    400020: Game_LeftHandIndex1
+    400022: Game_LeftHandIndex2
+    400024: Game_LeftHandIndex2_end
+    400026: Game_LeftHandMiddle1
+    400028: Game_LeftHandMiddle2
+    400030: Game_LeftHandMiddle2_end
+    400032: Game_LeftHandThumb1
+    400034: Game_LeftHandThumb2
+    400036: Game_LeftHandThumb2_end
+    400038: Game_LeftLeg
+    400040: Game_LeftShoulder
+    400042: Game_LeftUpLeg
+    400044: Game_Neck
+    400046: Game_RightArm
+    400048: Game_RightFoot
+    400050: Game_RightFoot_end
+    400052: Game_RightForeArm
+    400054: Game_RightHand
+    400056: Game_RightHandIndex1
+    400058: Game_RightHandIndex2
+    400060: Game_RightHandIndex2_end
+    400062: Game_RightHandMiddle1
+    400064: Game_RightHandMiddle2
+    400066: Game_RightHandMiddle2_end
+    400068: Game_RightHandThumb1
+    400070: Game_RightHandThumb2
+    400072: Game_RightHandThumb2_end
+    400074: Game_RightLeg
+    400076: Game_RightShoulder
+    400078: Game_RightUpLeg
+    400080: Game_Spine
+    400082: Game_Spine1
+    400084: Game_Spine2
+    400086: //RootNode
+    400088: hair02
+    400090: Porta
+    400092: Quadro
+    400094: Quadro.001
+    400096: Quadro.002
+    400098: Sala
+    400100: Sala.001
+    400102: Table.016
+    400104: woman_blouse
+    2100000: Mat.TableChair02
+    2100002: Mat.porta03
+    2100004: Mat.Quadro01
+    2100006: Mat.Quadro03
+    2100008: Mat.TableChair01
+    2100010: Mat.TableChair03
+    2100012: Mat.porta01
+    2100014: Mat.porta02
+    2100016: Mat.Quadro02
+    2100018: Mat.sala02
+    2100020: Mat.sala01
+    2100022: Mat.sala03
+    2100024: girl02-clothing 2
+    2100026: girl01-clothing
+    2100028: skin
+    2100030: white
+    2100032: eyes
+    2100034: mouse
+    2100036: hair
+    2300000: Porta
+    2300002: Quadro
+    2300004: Quadro.001
+    2300006: Quadro.002
+    2300008: Sala
+    2300010: Sala.001
+    2300012: Table.016
+    3300000: Porta
+    3300002: Quadro
+    3300004: Quadro.001
+    3300006: Quadro.002
+    3300008: Sala
+    3300010: Sala.001
+    3300012: Table.016
+    4300000: Sala.001
+    4300002: Quadro.002
+    4300004: Quadro.001
+    4300006: Table.016
+    4300008: Porta
+    4300010: Quadro
+    4300012: Sala
+    4300014: clothing
+    4300016: body
+    4300018: hair02
+    7400000: Sala.001|look
+    7400002: "Sala.001|Nao \xE9 nada.001"
+    7400004: "Sala.001|Nao \xE9 nada001"
+    7400006: Sala|look
+    7400008: "Sala|Nao \xE9 nada.001"
+    7400010: "Sala|Nao \xE9 nada001"
+    7400012: woman_blouse|Help-right
+    7400014: woman_blouse|Idle
+    7400016: woman_blouse|look
+    7400018: "woman_blouse|Nao \xE9 nada.001"
+    7400020: "woman_blouse|Nao \xE9 nada.002"
+    7400022: "woman_blouse|Nao \xE9 nada001"
+    7400024: woman_blouse|Passar esq.
+    7400026: woman_blouse|PassarDir.
+    7400028: woman_blouse|PassarFrente
+    7400030: "woman_blouse|Nao \xE9 nada"
+    7400032: woman_blouse|PassarTras
+    9500000: //RootNode
+    13700000: body
+    13700002: clothing
+    13700004: hair02
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

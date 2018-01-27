@@ -88,7 +88,10 @@ public class StudentManager : MonoBehaviour
         InteractingWith = null;
         if(temp!=null) temp.GetComponent<StudentManager>().StopCopying();
 
-        myAnimator.SetBool("send", false);
+        myAnimator.SetBool("toFront", false);
+        myAnimator.SetBool("toBack", false);
+        myAnimator.SetBool("toLeft", false);
+        myAnimator.SetBool("toRight", false);
     }
 
     private void TryToCopy()
@@ -161,11 +164,11 @@ public class StudentManager : MonoBehaviour
         Debug.Log(this.gameObject.name + back + right);
         if (back)
         {
-
+            myAnimator.SetBool("toBack", true);
         }
         else if (forward)
         {
-
+            myAnimator.SetBool("toFront", true);
         }
         else if (right)
         {
@@ -189,11 +192,11 @@ public class StudentManager : MonoBehaviour
         Debug.Log(this.gameObject.name + back + right);
         if (back)
         {
-
+            myAnimator.SetBool("toBack", true);
         }
         else if (forward)
         {
-            myAnimator.SetBool("send", true);
+            myAnimator.SetBool("toFront", true);
 
         }
         else if (right)
