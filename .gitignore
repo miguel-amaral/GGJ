@@ -467,4 +467,5 @@ sysinfo.txt
 
 
 
-!Assets/Prefabs/
+!GGJ/Assets/Prefabs/**
+!GGJ/Assets/Scenes/**
