@@ -28,5 +28,10 @@ namespace Assets.Scripts
                 Debug.LogError("OOPS AGAIN Deactivate Game Obj NULL");
             }
         }
+
+        public void UpdateSizeQuestion(float percentage)
+        {
+            myObject.transform.localScale = new Vector3(percentage, percentage, percentage);
+        }
     }
 }

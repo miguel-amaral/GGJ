@@ -31,6 +31,8 @@ public class StudentManager : MonoBehaviour
 
     private Animator myAnimator;
 
+    public GameObject paper;
+
 
     // Use this for initialization
     void Start () {
@@ -95,7 +97,10 @@ public class StudentManager : MonoBehaviour
         InteractingWith = null;
         if(temp!=null) temp.GetComponent<StudentManager>().StopCopying();
 
-        myAnimator.SetBool("send", false);
+        myAnimator.SetBool("toFront", false);
+        myAnimator.SetBool("toBack", false);
+        myAnimator.SetBool("toLeft", false);
+        myAnimator.SetBool("toRight", false);
     }
 
     private void TryToCopy()
@@ -134,7 +139,7 @@ public class StudentManager : MonoBehaviour
         {
             if (probability_sum < probability && probability <= probability_sum+QuestionProbability)
             {
-                Debug.Log(""+this.gameObject.name + " started question");
+                //Debug.Log(""+this.gameObject.name + " started question");
                 Question.ActivateQuestion();
                 //Questioning = true;
             }
@@ -168,19 +173,19 @@ public class StudentManager : MonoBehaviour
         //Debug.Log(this.gameObject.name + back + right);
         if (back)
         {
-
+            myAnimator.SetBool("toBack", true);
         }
         else if (forward)
         {
-
+            myAnimator.SetBool("toFront", true);
         }
         else if (right)
         {
-
+            myAnimator.SetBool("toRight", true);
         }
         else if (left)
         {
-            //myAnimator.SetBool("send", true);
+            myAnimator.SetBool("toLeft", true);
 
         }
     }
@@ -196,20 +201,20 @@ public class StudentManager : MonoBehaviour
         //Debug.Log(this.gameObject.name + back + right);
         if (back)
         {
-
+            myAnimator.SetBool("toBack", true);
         }
         else if (forward)
         {
-            myAnimator.SetBool("send", true);
+            myAnimator.SetBool("toFront", true);
 
         }
         else if (right)
         {
-
+            myAnimator.SetBool("toRight", true);
         }
         else if (left)
         {
-            //myAnimator.SetBool("send", true);
+            myAnimator.SetBool("toLeft", true);
 
         }
     }
@@ -225,27 +230,38 @@ public class StudentManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag.Equals("Professor"))
+        if (col.gameObject.tag.Equals("RangeCopyCollider"))
         {
             nearTeacher++;
             if (Sending || Receiving)
             {
-                Busted(col.gameObject);
+                Busted(col.gameObject.GetComponentInParent<PlayerController>());
             }
         }
+        //O outro Autista
+        //if (col.gameObject.tag.Equals("RangeAnswerQuestionCollider"))
+        //{
+            //Debug.Log("O professor tocou-me");
+            Question.OnTriggerEnter(col);
+        //}
     }
 
-    private void Busted(GameObject teacher)
+    private void Busted(PlayerController teacher_script)
     {
-        var teacher_script = teacher.GetComponent<PlayerController>();
+        //var teacher_script = teacher.GetComponent<PlayerController>();
         teacher_script.Bust(this);
         StopCopying();
     }
 
     public void OnTriggerExit(Collider col) {
-        if (col.gameObject.tag.Equals("Professor")) {
+        if (col.gameObject.tag.Equals("RangeCopyCollider")) {
             nearTeacher--;
         }
+        //O outro Autista
+        //if (col.gameObject.tag.Equals("Professor")) {
+        //    Debug.Log("O professor largou-me");
+            Question.OnTriggerExit(col);
+        //}
     }
 
     void OnDrawGizmos() {
@@ -257,6 +273,11 @@ public class StudentManager : MonoBehaviour
 
         if (nearTeacher > 0)
         {
+            if (nearTeacher > 1)
+            {
+                Debug.Log(this.gameObject.name + " " + nearTeacher);
+            }
+
             Handles.color = Color.red;
         }
         else if (Receiving)
@@ -272,8 +293,9 @@ public class StudentManager : MonoBehaviour
         {
             Handles.color = Color.green;
         }
-        Handles.DrawWireDisc(this.transform.position, Vector3.up, 10);
+        Handles.DrawWireDisc(this.transform.position, Vector3.up, 7);
         
+
         if (InteractingWith != null && Sending)
         {
             Gizmos.color=Color.white;
@@ -281,11 +303,21 @@ public class StudentManager : MonoBehaviour
             var direction = InteractingWith.gameObject.transform.position - this.transform.position;
             var vector_percentage = direction * percentage; 
             Gizmos.DrawLine(this.transform.position, this.transform.position+vector_percentage);
+
+            //paper.transform.Translate(this.transform.position.x, this.transform.position.x + vector_percentage.x, Time.deltaTime);
+
+
+
         }
         //Gizmos.color = Color.black;
         //foreach (var neighbour in _neighbours)
         //{
         //    Gizmos.DrawLine(this.transform.position,neighbour.transform.position);
         //}
+    }
+
+    private void sendPaper()
+    {
+
     }
 }

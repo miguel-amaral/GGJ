@@ -12,7 +12,7 @@ namespace Assets.Scripts {
         private int _nearTeacher = 0;
 
         private float RemainingTimeForDisappear;
-        private float MaxTimeQuestionDisappear;
+        public float MaxTimeQuestionDisappear;
 
         public GameObject GREEN_QUESTION;
         public GameObject YELLOW_QUESTION;
@@ -22,14 +22,8 @@ namespace Assets.Scripts {
         public int TimeYellowToRed   = 3;
         public int TimeRedToBust     = 3;
 
-        public int TimeToRemoveDoubt = 2;
+//        public int TimeToRemoveDoubt 2 = 2;
         private bool _questioning = false;
-
-        public Question(float timeForQuestionDisappear)
-        {
-            RemainingTimeForDisappear = timeForQuestionDisappear;
-            MaxTimeQuestionDisappear = timeForQuestionDisappear;
-        }
 
         public void Start()
         {
@@ -51,19 +45,25 @@ namespace Assets.Scripts {
         }
 
 
-
+        private void UpdateVisualQuestion()
+        {
+            var percentage = RemainingTimeForDisappear / MaxTimeQuestionDisappear;
+            this.gameObject.transform.localScale = new Vector3(percentage,percentage,percentage);
+            //State.UpdateSizeQuestion(percentage);
+                
+        }
         private void TeacherIsHelping(float deltaTime)
         {
             
             RemainingTimeForDisappear -= deltaTime;
-            if (RemainingTimeForDisappear < 0)
+            if (_questioning && RemainingTimeForDisappear < 0 )
             {
                 QuestionSolved();
             }
         }
         private void TeacherIsAway(float deltaTime)
         {
-            RemainingTimeForDisappear += deltaTime;
+            RemainingTimeForDisappear += (deltaTime/3);
             if (RemainingTimeForDisappear > MaxTimeQuestionDisappear)
             {
                 RemainingTimeForDisappear = MaxTimeQuestionDisappear;
@@ -77,10 +77,9 @@ namespace Assets.Scripts {
             RemainingTimeForDisappear = MaxTimeQuestionDisappear;
             State = new GreenQuestion();
             UpdateStateObjs();
+            this.transform.localScale = new Vector3(1, 1, 1);
         }
-        private void UpdateVisualQuestion() {
-            //Scale
-        }
+
         private void QuestionSolved() {
             Debug.Log("Question Solved");
             this.StopQuestion();
@@ -102,13 +101,13 @@ namespace Assets.Scripts {
             //throw new NotImplementedException();
         }
         public void OnTriggerEnter(Collider col) {
-            if (col.gameObject.tag.Equals("Professor")) {
+            if (col.gameObject.tag.Equals("RangeAnswerQuestionCollider")) {
                 _nearTeacher++;
             }
         }
 
         public void OnTriggerExit(Collider col) {
-            if (col.gameObject.tag.Equals("Professor")) {
+            if (col.gameObject.tag.Equals("RangeAnswerQuestionCollider")) {
                 _nearTeacher--;
             }
         }

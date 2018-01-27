@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour
 	void Start () {
 	    _students = new List<GameObject>(GameObject.FindGameObjectsWithTag("Student"));
 	    _professors = new List<GameObject>(GameObject.FindGameObjectsWithTag("Professor"));
+
+        var objs = new List<GameObject>(GameObject.FindGameObjectsWithTag("RangeCopyCollider"));
+	    foreach (var o in objs)
+	    {
+	        Debug.LogWarning(o.name);
+	    }
+
     }
 
     // TeacherIsAway is called once per frame
