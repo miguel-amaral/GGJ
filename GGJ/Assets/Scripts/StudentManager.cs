@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -14,13 +15,15 @@ public class StudentManager : MonoBehaviour
     public int CopyProbability = 13;
     public int QuestionProbability = 13;
     public int TimeToSendAnswer = 3;
+
+    public GameObject QuestionManagerGameObject;
+    private Question Question;
     private List<GameObject> _neighbours = new List<GameObject>();
 
     private float CopyRemainingTime = 0;
 
     private bool Receiving = false;
     private bool Sending = false;
-    private bool Questioning = false;
 
     private GameObject InteractingWith = null;
 
@@ -47,13 +50,17 @@ public class StudentManager : MonoBehaviour
         }
 
         myAnimator = GetComponentInChildren<Animator>();
-
+        Question = QuestionManagerGameObject.GetComponent<Question>();
+        if (Question == null)
+        {
+            Debug.LogError("Student " + this.gameObject.name+ "Without Question Manager");
+        }
     }
 
     public bool CanCopy()
 
     {
-        return nearTeacher == 0 && !Receiving && !Sending && !Questioning;
+        return nearTeacher == 0 && !Receiving && !Sending && Question.CanQuestion();
     }
 
     private float DistanceToMe(GameObject other)
@@ -61,7 +68,7 @@ public class StudentManager : MonoBehaviour
         return Vector3.Distance(other.transform.position, this.transform.position);
     }
 
-    // Update is called once per frame
+    // TeacherIsAway is called once per frame
     void Update ()
     {
         TimeAccumulated += Time.deltaTime;
@@ -119,8 +126,6 @@ public class StudentManager : MonoBehaviour
                 {
                     TimeAccumulated += TryToCopyEveryAmountOfSeconds / 2.0f;
                 }
-
-                
             }
         }
 
@@ -129,14 +134,16 @@ public class StudentManager : MonoBehaviour
         {
             if (probability_sum < probability && probability <= probability_sum+QuestionProbability)
             {
-                Questioning = true;
+                Debug.Log(""+this.gameObject.name + " started question");
+                Question.ActivateQuestion();
+                //Questioning = true;
             }
         }
     }
 
     private bool CanQuestion()
     {
-        return !Sending && !Receiving && !Questioning;
+        return !Sending && !Receiving && Question.CanQuestion();
     }
 
     private void SendCopy(StudentManager otherCheater)
@@ -158,7 +165,7 @@ public class StudentManager : MonoBehaviour
         var right = direction.x < 0;
         var left = direction.x > 0;
 
-        Debug.Log(this.gameObject.name + back + right);
+        //Debug.Log(this.gameObject.name + back + right);
         if (back)
         {
 
@@ -186,7 +193,7 @@ public class StudentManager : MonoBehaviour
         var right = direction.x < 0;
         var left = direction.x > 0;
 
-        Debug.Log(this.gameObject.name + back + right);
+        //Debug.Log(this.gameObject.name + back + right);
         if (back)
         {
 
@@ -228,15 +235,6 @@ public class StudentManager : MonoBehaviour
         }
     }
 
-    public void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject.tag.Equals("Professor"))
-        {
-            Questioning = false;
-
-        }
-    }
-
     private void Busted(GameObject teacher)
     {
         var teacher_script = teacher.GetComponent<PlayerController>();
@@ -251,11 +249,11 @@ public class StudentManager : MonoBehaviour
     }
 
     void OnDrawGizmos() {
-        if (Questioning)
-        {
-            Gizmos.color = Color.black;
-            Gizmos.DrawSphere(this.transform.position + new Vector3(0, 10, 0), 3);
-        }
+        //if (Questioning)
+        //{
+        //    Gizmos.color = Color.black;
+        //    Gizmos.DrawSphere(this.transform.position + new Vector3(0, 10, 0), 3);
+        //}
 
         if (nearTeacher > 0)
         {

@@ -83,7 +83,7 @@ namespace TMPro.Examples
         }
 
 
-        //void Update()
+        //void TeacherIsAway()
         //{
         //    if (SpawnType == 0)
         //    {

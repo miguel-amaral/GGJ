@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 	    _professors = new List<GameObject>(GameObject.FindGameObjectsWithTag("Professor"));
     }
 
-    // Update is called once per frame
+    // TeacherIsAway is called once per frame
     void Update () {
         foreach (var professor in _professors) {
             foreach (var student in _students)

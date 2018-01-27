@@ -36,7 +36,7 @@ namespace TMPro.Examples
 
         void OnDrawGizmos()
         {
-            // Update Text Statistics
+            // TeacherIsAway Text Statistics
             TMP_TextInfo textInfo = m_TextComponent.textInfo;
 
             ObjectStats = "Characters: " + textInfo.characterCount + "   Words: " + textInfo.wordCount + "   Spaces: " + textInfo.spaceCount + "   Sprites: " + textInfo.spriteCount + "   Links: " + textInfo.linkCount

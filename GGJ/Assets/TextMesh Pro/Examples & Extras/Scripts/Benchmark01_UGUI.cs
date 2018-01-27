@@ -116,7 +116,7 @@ namespace TMPro.Examples
 
 
         /*
-        void Update()
+        void TeacherIsAway()
         {
             if (BenchmarkType == 0)
             {
