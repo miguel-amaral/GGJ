@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
         Handles.color = Color.red;
         foreach (var professor in _professors)
         {
-            var collider = professor.GetComponent<SphereCollider>();
-            Handles.DrawWireDisc(professor.transform.position, Vector3.up, collider.radius * 10);
+            var collider = professor.GetComponent<CapsuleCollider>();
+            Handles.DrawWireDisc(professor.transform.position, Vector3.up, collider.radius * 100);
         }
     }
 }
