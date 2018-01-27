@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         foreach (var professor in _professors)
         {
             var collider = professor.GetComponent<CapsuleCollider>();
-            Handles.DrawWireDisc(professor.transform.position, Vector3.up, collider.radius * 100);
+            Handles.DrawWireDisc(professor.transform.position, Vector3.up, collider.radius);
         }
     }
 }

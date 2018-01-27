@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 144940239}
   m_LocalRotation: {x: -0.7071068, y: 0.000000024445171, z: -0.0000000101152455, w: 0.7071067}
   m_LocalPosition: {x: -0.000000009536743, y: 0.0059548635, z: 0.000000004768369}
-  m_LocalScale: {x: 100, y: 99.999985, z: 100}
+  m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_Children: []
   m_Father: {fileID: 1323493479}
   m_RootOrder: 2
@@ -2019,7 +2019,7 @@ Transform:
   m_GameObject: {fileID: 1096563944}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0.0059548477, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_Children:
   - {fileID: 664587393}
   m_Father: {fileID: 1323493479}
@@ -2078,7 +2078,7 @@ Transform:
   m_GameObject: {fileID: 1118039682}
   m_LocalRotation: {x: -0.72118545, y: -0.00004798751, z: -0.00006521012, w: 0.69274205}
   m_LocalPosition: {x: 0.000024618592, y: 0.003926322, z: 0.058003426}
-  m_LocalScale: {x: 100, y: 100.000015, z: 100.00006}
+  m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_Children: []
   m_Father: {fileID: 1323493479}
   m_RootOrder: 3
@@ -2439,7 +2439,7 @@ Transform:
   m_GameObject: {fileID: 1252612992}
   m_LocalRotation: {x: -0.7071068, y: 0.000000024445171, z: -0.0000000101152455, w: 0.7071067}
   m_LocalPosition: {x: -0.000000009536743, y: 0.0059548635, z: 0.000000004768369}
-  m_LocalScale: {x: 100, y: 99.999985, z: 100}
+  m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_Children: []
   m_Father: {fileID: 1323493479}
   m_RootOrder: 1
@@ -2744,7 +2744,7 @@ Transform:
   m_GameObject: {fileID: 1323493473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.673727, y: -0.5, z: -44.824017}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1096563945}
   - {fileID: 1252612993}
@@ -2762,7 +2762,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 4.3
+  m_Radius: 40
   m_Height: 1.7038434
   m_Direction: 1
   m_Center: {x: 0, y: 0.8414179, z: 0}
