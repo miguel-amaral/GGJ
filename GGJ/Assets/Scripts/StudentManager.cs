@@ -28,6 +28,8 @@ public class StudentManager : MonoBehaviour
 
     private Animator myAnimator;
 
+    public GameObject paper;
+
 
     // Use this for initialization
     void Start () {
@@ -172,11 +174,11 @@ public class StudentManager : MonoBehaviour
         }
         else if (right)
         {
-
+            myAnimator.SetBool("toRight", true);
         }
         else if (left)
         {
-            //myAnimator.SetBool("send", true);
+            myAnimator.SetBool("toLeft", true);
 
         }
     }
@@ -201,11 +203,11 @@ public class StudentManager : MonoBehaviour
         }
         else if (right)
         {
-
+            myAnimator.SetBool("toRight", true);
         }
         else if (left)
         {
-            //myAnimator.SetBool("send", true);
+            myAnimator.SetBool("toLeft", true);
 
         }
     }
@@ -286,11 +288,21 @@ public class StudentManager : MonoBehaviour
             var direction = InteractingWith.gameObject.transform.position - this.transform.position;
             var vector_percentage = direction * percentage; 
             Gizmos.DrawLine(this.transform.position, this.transform.position+vector_percentage);
+
+            paper.transform.Translate(this.transform.position.x, this.transform.position.x + vector_percentage.x, Time.deltaTime);
+
+
+
         }
         //Gizmos.color = Color.black;
         //foreach (var neighbour in _neighbours)
         //{
         //    Gizmos.DrawLine(this.transform.position,neighbour.transform.position);
         //}
+    }
+
+    private void sendPaper()
+    {
+
     }
 }
