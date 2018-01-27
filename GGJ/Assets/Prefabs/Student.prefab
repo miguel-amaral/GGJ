@@ -1684,10 +1684,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd06c1e9c1745d4c816d4aad5be03fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CheatingRadius: 66
+  CheatingRadius: 50
   TryToCopyEveryAmountOfSeconds: 2
-  CopyProbability: 15
-  QuestionProbability: 10
+  CopyProbability: 25
+  QuestionProbability: 0
   TimeToSendAnswer: 3
 --- !u!137 &137224801747105236
 SkinnedMeshRenderer:
