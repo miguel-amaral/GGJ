@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     }
 	
-	// Update is called once per frame
+	// TeacherIsAway is called once per frame
 	void FixedUpdate ()
 	{
         //float hor_axis = Input.GetAxisRaw("Horizontal");
@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
     public void Bust(StudentManager studentManager)
     {
         BustedStudents++;
-        Debug.Log("Busted: " + BustedStudents + " students");
     }
 
 }
