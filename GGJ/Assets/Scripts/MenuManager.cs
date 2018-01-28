@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject GameOverMenu;
     public GameObject MainMenu;
 
+    private string currentScene;
     // Use this for initialization
     void Start () {
         if (ScoreKeeper.KeepingScore)
@@ -38,11 +39,14 @@ public class MenuManager : MonoBehaviour
                 case "Letter":
                     child.GetComponent<TextMeshProUGUI>().text = ScoreKeeper.Letter.ToString();
                     break;
-
-
+                case "GameOver":
+                    child.GetComponent<TextMeshProUGUI>().text = ScoreKeeper.Victory ? "Victory!!!" : "Game Over";
+                    break;
             }
             //child is your child transform
         }
+
+        currentScene = ScoreKeeper.CurrentScene;
 
     }
 }

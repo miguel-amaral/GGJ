@@ -13,7 +13,7 @@ public class StudentManager : MonoBehaviour
 
     private int nearTeacher = 0;
     public int CheatingRadius = 50;
-    public int TryToCopyEveryAmountOfSeconds = 0;
+    public float TryToCopyEveryAmountOfSeconds = 0;
     public int CopyProbability = 13;
     public int QuestionProbability = 13;
     public int TimeToSendAnswer = 3;
@@ -70,6 +70,8 @@ public class StudentManager : MonoBehaviour
         }
 
         cheat_default_position = cheat.gameObject.transform.position;
+        TryToCopyEveryAmountOfSeconds += Random.Range(0.0f, 1.0f);
+
     }
 
     public bool CanCopy()

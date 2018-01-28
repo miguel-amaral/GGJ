@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public int NumberTotalQuestionsInLevel = 10;
     public int QuestionsIncrementalValue = 1;
-
+    public float AvgMax = 9.5f;
 
     private float[] ScoresLetters = new float[] {0.5f, 0.75f, 1};
     private int CurrentMaxQuestions = 0;
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         if (LevelRemainingTime < 0)
         {
             FinishLevelTime();
-            LevelRemainingTime = LevelTime;
+            //LevelRemainingTime = LevelTime;
         }
 
 
@@ -143,10 +143,15 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        Debug.LogError("GAME OVER BOY : " + CalculateFinalScore() );
+        //Debug.LogError("GAME OVER BOY : " + CalculateFinalScore() );
         ScoreKeeper.KeepingScore = true;
-        ScoreKeeper.Letter = letter;
-        ScoreKeeper.Score = CalculateClassAverage();
+
+        var avg = CalculateClassAverage();
+        bool victory = avg < AvgMax && LevelRemainingTime < 0;
+        ScoreKeeper.Victory = victory;
+        ScoreKeeper.Letter = (victory ? letter : "F");
+        ScoreKeeper.Score = avg;
+        ScoreKeeper.CurrentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("_menu");
     }
 
@@ -168,9 +173,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Quality %??: " + NumberQuestionsSolved + " / " +  TotalQuestionsMade  + " : " + quality);
-        Debug.Log("Busted: " + NumberStudentsBusted + " Failed ???: " + NumberQuestionsFailed + " Successful ???: " + NumberQuestionsSolved);
-        Debug.Log("Media: " + CalculateClassAverage() + " :stars: " + stars);
+        //Debug.Log("Quality %??: " + NumberQuestionsSolved + " / " +  TotalQuestionsMade  + " : " + quality);
+        //Debug.Log("Busted: " + NumberStudentsBusted + " Failed ???: " + NumberQuestionsFailed + " Successful ???: " + NumberQuestionsSolved);
+        //Debug.Log("Media: " + CalculateClassAverage() + " :stars: " + stars);
     }
 
     private float CalculateClassAverage()
