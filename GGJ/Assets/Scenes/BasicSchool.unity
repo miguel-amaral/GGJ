@@ -2298,7 +2298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 2105011211}
   TimeLeftText: {fileID: 2047828867}
-  NumberTotalQuestionsInLevel: 9
+  NumberTotalQuestionsInLevel: 3
   QuestionsIncrementalValue: 1
   AvgMax: 9.5
   TimeBetweenCopyAttempts: 1
