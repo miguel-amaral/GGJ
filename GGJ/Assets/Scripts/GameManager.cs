@@ -100,4 +100,21 @@ public class GameManager : MonoBehaviour
     {
         NumberQuestionsFailed++;
     }
+
+    public Vector3 NearestTeacherDirection(Vector3 position)
+    {
+        Vector3 bestDirection = Random.Range(0,2) == 0 ?  Vector3.left : Vector3.right;
+        float bestDistance = float.MaxValue;
+        foreach (var professor in _professors)
+        {
+            var direction = professor.transform.position - position;
+            var distance = direction.magnitude;
+            if (distance < bestDistance)
+            {
+                bestDistance = distance;
+                bestDirection = direction;
+            }
+        }
+        return bestDirection;
+    }
 }

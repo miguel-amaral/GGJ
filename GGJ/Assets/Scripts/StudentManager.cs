@@ -156,7 +156,7 @@ public class StudentManager : MonoBehaviour
 
     private void TryToCopy()
     {
-        var probability = Random.Range(0, 99);
+        var probability = Random.Range(0, 100);
         var probability_sum = 0;
         var tempNeighbours = new List<StudentManager>();
         if (CanCopy())
@@ -200,6 +200,28 @@ public class StudentManager : MonoBehaviour
 
         myAnimator.SetBool("help", true);
         Question.ActivateQuestion();
+        var direction = gameManager.NearestTeacherDirection(this.transform.position);
+        var right = direction.x < 0;
+        if (right)
+        {
+            QuestionRightArm();
+        }
+        else
+        {
+            QuestionLeftArm();
+        }
+
+    }
+
+    private void QuestionRightArm()
+    {
+        Debug.Log("Braco RIGHT");
+    }
+
+    private void QuestionLeftArm()
+    {
+        //throw new System.NotImplementedException();
+        Debug.Log("Braco LEFT");
     }
 
     private bool CanQuestion()
