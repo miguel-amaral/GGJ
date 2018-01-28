@@ -2876,8 +2876,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1562623880}
   TimeLeftText: {fileID: 602875302}
-  NumberTotalQuestionsInLevel: 7
-  QuestionsIncrementalValue: 1
+  NumberTotalQuestionsInLevel: 16
+  QuestionsIncrementalValue: 2
   AvgMax: 9.5
   TimeBetweenCopyAttempts: 1
   CopyProbability: 25
@@ -2885,7 +2885,7 @@ MonoBehaviour:
   ExerciseCopyValue: 5
   LevelTime: 60
   MaxSimoultaneousQuestionsInRoom: 3
-  MaxCopiesInRoom: 8
+  MaxCopiesInRoom: 7
   progressBar: {fileID: 1772604590}
 --- !u!82 &997359401
 AudioSource:
