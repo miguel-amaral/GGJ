@@ -15,7 +15,11 @@ public class PlayerController : MonoBehaviour
     private string vertical_axis_name;
     private string action_name_button;
 
-    private GameObject closest;
+    private GameObject Closest;
+    private GameObject Holding;
+
+    private float lastPickUp;
+    public float DelayBetweenActions = 1;
 
     // Use this for initialization
     void Start ()
@@ -31,11 +35,12 @@ public class PlayerController : MonoBehaviour
 
         horizontal_axis_name = player_string + "_Horizontal_" + (keyboard?"Keyboard":"Gamepad") ;
 	    vertical_axis_name = player_string + "_Vertical_" + (keyboard ? "Keyboard" : "Gamepad");
-	    action_name_button = player_string + "_Action_" + (keyboard ? "Keyboard" : "Gamepad"); ;
+	    action_name_button = player_string + "_Action_" + (keyboard ? "Keyboard" : "Gamepad"); 
+
 	}
 	
 	// TeacherIsAway is called once per frame
-	void FixedUpdate ()
+	void Update ()
 	{
         //float hor_axis = Input.GetAxisRaw("Horizontal");
         //float ver_axis = Input.GetAxisRaw("Vertical");
@@ -58,10 +63,19 @@ public class PlayerController : MonoBehaviour
         }
 
 	    var action = Input.GetButton(action_name_button);
-	    if (action)
+	    var currentTime = Time.realtimeSinceStartup;
+	    if (action && currentTime-lastPickUp > DelayBetweenActions)
 	    {
-            Debug.Log("Action");
-	    }
+	        lastPickUp = currentTime;
+	        if (Holding != null)
+	        {
+	            this.DropBoard();
+	        }
+	        else
+	        {
+	            this.TryToPickBoard();
+            }
+        }
 	    
 
         //transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
@@ -76,9 +90,42 @@ public class PlayerController : MonoBehaviour
 
 	}
 
+    private void DropBoard()
+    {
+        Debug.LogWarning("Drop");
+        var obsManager = Holding.GetComponent<ObstacleManager>();
+        obsManager.BeDropedDown();
+        this.Holding = null;
+ 
+        //throw new System.NotImplementedException();
+    }
+
+    private void TryToPickBoard()
+    {
+        if (Closest != null && Holding == null)
+        {   
+            var obsManager = Closest.GetComponent<ObstacleManager>();
+            Debug.LogWarning(obsManager.CanPickUp());
+            if (obsManager.CanPickUp())
+            {
+                Holding = Closest;
+                //Closest = null;
+
+                obsManager.BePickedUp(this.gameObject);
+            } else
+            {
+                Debug.LogWarning("Board dont let me pick up");
+            }
+        }
+        else
+        {
+            //1e
+        }
+    }
+
     void OnTriggerEnter(Collider col)
     {
-
+        
     }
 
     public void Bust(StudentManager studentManager)
@@ -86,8 +133,9 @@ public class PlayerController : MonoBehaviour
         BustedStudents++;
     }
 
-    public void setClosest(GameObject obstacleManager)
+    public void SetClosest(GameObject obstacleManager)
     {
-        this.closest = obstacleManager;
+        Debug.Log("Setting Closest: " + obstacleManager);
+        this.Closest = obstacleManager;
     }
 }
