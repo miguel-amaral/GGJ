@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         var avgClass = CalculateClassAverage();
 
         //this.ScoreText.text = timeLeft.ToString();
-        this.ScoreText.text = avgClass.ToString();
+        this.ScoreText.text = avgClass.ToString("0.0");
         this.TimeLeftText.text = timeLeft.ToString();   
         //Update Score in UI
     }
@@ -130,10 +130,10 @@ public class GameManager : MonoBehaviour
         switch (stars)
         {
             case 3:
-                letter = "S";
+                letter = "A";
                 break;
             case 2:
-                letter = "A";
+                letter = "B";
                 break;
             case 1:
                 letter = "C";
