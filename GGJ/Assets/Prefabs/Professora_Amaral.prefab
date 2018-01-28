@@ -2363,7 +2363,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1273564219443108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: 0, z: 0}
+  m_LocalPosition: {x: 15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4365963870631896}
@@ -3014,7 +3014,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSpeed: 50
-  player_string: P1
+  player_string: P2
+  DelayBetweenActions: 1
 --- !u!136 &136249105439213550
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3037,7 +3038,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 4
+  m_Radius: 3
   m_Height: 20
   m_Direction: 1
   m_Center: {x: 0, y: 10, z: 0}

@@ -502,7 +502,6 @@ GameObject:
   - component: {fileID: 54243231819576542}
   - component: {fileID: 114019236582841966}
   - component: {fileID: 136199897103789192}
-  - component: {fileID: 65763322813657290}
   m_Layer: 0
   m_Name: Student
   m_TagString: Student
@@ -1202,7 +1201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516246098287452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 60}
+  m_LocalPosition: {x: -30, y: 0, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4991858069253384}
@@ -1311,7 +1310,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197148749555090}
-  m_LocalRotation: {x: -0.59834576, y: 0.35536262, z: 0.61376417, w: -0.37281826}
+  m_LocalRotation: {x: -0.5983457, y: 0.3553626, z: 0.6137641, w: -0.37281823}
   m_LocalPosition: {x: -0.00096636225, y: 0.00027595952, z: -0.00002420752}
   m_LocalScale: {x: 1.0000068, y: 1.0000513, z: 1.0000352}
   m_Children:
@@ -2529,18 +2528,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65763322813657290
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1516246098287452}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 40, z: 10}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!82 &82208648320234604
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2882,11 +2869,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 1516246098287452}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 4.645562
-  m_Height: 12.610484
+  m_Enabled: 1
+  m_Radius: 4.4124365
+  m_Height: 11.201614
   m_Direction: 2
-  m_Center: {x: 0.120755196, y: 2, z: 0.034969807}
+  m_Center: {x: 0, y: 2, z: -0.78028107}
 --- !u!137 &137224801747105236
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
