@@ -265,6 +265,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1776032322991848, guid: ed62d06db3ceb98488f8b404574e1d3f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed62d06db3ceb98488f8b404574e1d3f, type: 2}
   m_IsPrefabParent: 0
@@ -2294,7 +2298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 2105011211}
   TimeLeftText: {fileID: 2047828867}
-  NumberTotalQuestionsInLevel: 7
+  NumberTotalQuestionsInLevel: 9
   QuestionsIncrementalValue: 1
   AvgMax: 9.5
   TimeBetweenCopyAttempts: 1
