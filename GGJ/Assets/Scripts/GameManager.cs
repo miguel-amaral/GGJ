@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     public int QuestionsIncrementalValue = 1;
     public float AvgMax = 9.5f;
 
+    public float TimeBetweenCopyAttempts = 1;
+    public int CopyProbability = 25;
+    public int QuestionProbability= 25;
+    public float ExerciseCopyValue = 5.0f;
+
     private float[] ScoresLetters = new float[] {0.5f, 0.75f, 1};
     private int CurrentMaxQuestions = 0;
     private int TotalQuestionsMade = 0;
@@ -49,7 +54,12 @@ public class GameManager : MonoBehaviour
 	    _professors = new List<GameObject>(GameObject.FindGameObjectsWithTag("Professor"));
         foreach (var student in _students)
         {
-            _studentsScripts.Add(student.GetComponent<StudentManager>());
+            var student_script = student.GetComponent<StudentManager>();
+            _studentsScripts.Add(student_script);
+            student_script.CopyProbability = this.CopyProbability;
+            student_script.TryToCopyEveryAmountOfSeconds = TimeBetweenCopyAttempts;
+            student_script.QuestionProbability = this.QuestionProbability;
+            student_script.ExerciseCopyValue = this.ExerciseCopyValue;
         }
         LevelRemainingTime = LevelTime;
 
@@ -154,7 +164,7 @@ public class GameManager : MonoBehaviour
         bool victory = avg < AvgMax && LevelRemainingTime < 0;
         ScoreKeeper.Victory = victory;
         ScoreKeeper.Letter = (victory ? letter : "F");
-        ScoreKeeper.Score = avg;
+        ScoreKeeper.Score = avg.ToString("0.0") + " / " + AvgMax.ToString("0.0");
         ScoreKeeper.CurrentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("_menu");
     }

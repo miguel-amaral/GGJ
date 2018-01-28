@@ -9,7 +9,7 @@ namespace Assets.Scripts {
         public static bool KeepingScore;
         public static bool Victory;
         public static string Letter;
-        public static float Score;
+        public static string Score;
         //public static float time;
         public static string CurrentScene;
     }
