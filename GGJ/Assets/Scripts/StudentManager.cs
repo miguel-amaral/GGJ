@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
-using UnityEditor;
-using UnityEditor.Rendering;
+/*using UnityEditor;
+using UnityEditor.Rendering;*/
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -380,7 +380,7 @@ public class StudentManager : MonoBehaviour
         //}
     }
 
-    void OnDrawGizmos() {
+   /* void OnDrawGizmos() {
         //if (Questioning)
         //{
         //    Gizmos.color = Color.black;
@@ -430,7 +430,7 @@ public class StudentManager : MonoBehaviour
         //{
         //    Gizmos.DrawLine(this.transform.position,neighbour.transform.position);
         //}
-    }
+    }*/
 
     private void sendPaper()
     {

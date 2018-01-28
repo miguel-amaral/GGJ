@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -204,14 +204,14 @@ public class GameManager : MonoBehaviour
         return total / number_students;
     }
 
-    void OnDrawGizmos() {
+   /* void OnDrawGizmos() {
         Handles.color = Color.red;
         foreach (var professor in _professors)
         {
             var collider = professor.GetComponent<CapsuleCollider>();
             Handles.DrawWireDisc(professor.transform.position, Vector3.up, collider.radius);
         }
-    }
+    }*/
 
 
 
