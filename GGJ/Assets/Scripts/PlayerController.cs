@@ -57,11 +57,11 @@ public class PlayerController : MonoBehaviour
             teacherAnimator.SetBool("walk", false);
         }
 
-	    var action = Input.GetButton(action_name_button);
+	   /* var action = Input.GetButton(action_name_button);
 	    if (action)
 	    {
             Debug.Log("Action");
-	    }
+	    }*/
 	    
 
         //transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
