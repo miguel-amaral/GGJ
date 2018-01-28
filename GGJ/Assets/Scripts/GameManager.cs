@@ -73,14 +73,19 @@ public class GameManager : MonoBehaviour
     private float accumulated = 0;
     void Update ()
     {
+        if (AvgMax < CalculateClassAverage()) {
+            FinishLevelTime();
+        }
         accumulated += Time.deltaTime;
         AccumulatorTimeQuestionsIncremental += Time.deltaTime;
         if (accumulated > 0.5f)
         {
             accumulated -= 0.5f;
+
             UpdateScoreUI();
 
             this.PrintScore();
+
         }
 
         if (AccumulatorTimeQuestionsIncremental > QuestionsIncrementalPeriod && CurrentMaxQuestions < NumberTotalQuestionsInLevel)
