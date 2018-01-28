@@ -100,6 +100,21 @@ public class StudentManager : MonoBehaviour
             TimeAccumulated -= TryToCopyEveryAmountOfSeconds;
             TryToCopy();
         }
+
+        EndAnimationAskQuestion();
+    }
+
+    private void EndAnimationAskQuestion()
+    {
+        if (!isQuestionActive())
+        {
+            myAnimator.SetBool("help", false);
+        }
+    }
+
+    private bool isQuestionActive()
+    {
+        return Question.Questioning();
     }
 
     private bool CanSend()
@@ -196,6 +211,8 @@ public class StudentManager : MonoBehaviour
     }
 
     private void AskQuestion() {
+
+        myAnimator.SetBool("help", true);
         Question.ActivateQuestion();
         var direction = gameManager.NearestTeacherDirection(this.transform.position);
         var right = direction.x < 0;
