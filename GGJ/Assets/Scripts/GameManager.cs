@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     private int NumberQuestionsSolved = 0;
     private int NumberQuestionsFailed = 0;
     private int NumberStudentsBusted = 0;
+
+    public Image progressBar;
     // Use this for initialization
     void Start () {
 	    _students = new List<GameObject>(GameObject.FindGameObjectsWithTag("Student"));
@@ -107,8 +109,10 @@ public class GameManager : MonoBehaviour
 
         //this.ScoreText.text = timeLeft.ToString();
         this.ScoreText.text = avgClass.ToString();
-        this.TimeLeftText.text = timeLeft.ToString();   
+        this.TimeLeftText.text = timeLeft.ToString();
         //Update Score in UI
+
+        this.progressBar.GetComponent<Image>().fillAmount = percentageTimeLevel;
     }
 
     private void FinishLevelTime()
