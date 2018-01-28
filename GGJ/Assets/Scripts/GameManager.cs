@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
 
     public bool CanCopy() {
+        //Debug.Log(NumberCopiesInRoom + " :<->: " + MaxCopiesInRoom );
         return NumberCopiesInRoom < MaxCopiesInRoom;
     }
     public void StopCopy() {
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     //----------------------------------
     public bool CanQuestion() {
+        //Debug.Log(NumberQuestionsInRoom + " :???: " + MaxQuestionsInRoom);
         return NumberQuestionsInRoom < MaxQuestionsInRoom;
     }
     public void StopQuestions()

@@ -34,7 +34,9 @@ public class StudentManager : MonoBehaviour
     public Animator myAnimator;
     public Animator paperAnimator;
     public GameObject cheat;
+    private Vector3 cheat_default_position;
 
+    private float _currentScore = 0;
 
     // Use this for initialization
     void Start () {
@@ -64,10 +66,11 @@ public class StudentManager : MonoBehaviour
         if (gameManager == null) {
             Debug.LogError("Student " + this.gameObject.name + "Without Game Manager");
         }
+
+        cheat_default_position = cheat.gameObject.transform.position;
     }
 
     public bool CanCopy()
-
     {
         return nearTeacher == 0 && !Receiving && !Sending && !Question.Questioning() && gameManager.CanCopy();
     }
@@ -86,6 +89,7 @@ public class StudentManager : MonoBehaviour
             CopyRemainingTime -= Time.deltaTime;
             if (CopyRemainingTime <= 0)
             {
+                EndCopy();
                 StopCopying();
             }
         }
@@ -94,6 +98,11 @@ public class StudentManager : MonoBehaviour
             TimeAccumulated -= TryToCopyEveryAmountOfSeconds;
             TryToCopy();
         }
+    }
+
+    private void EndCopy()
+    {
+        //throw new System.NotImplementedException();
     }
 
     private void StopCopying()
@@ -108,15 +117,24 @@ public class StudentManager : MonoBehaviour
         InteractingWith = null;
         if(temp!=null) temp.GetComponent<StudentManager>().StopCopying();
 
-        myAnimator.SetBool("toFront", false);
-        myAnimator.SetBool("toBack", false);
-        myAnimator.SetBool("toLeft", false);
-        myAnimator.SetBool("toRight", false);
-        paperAnimator.SetBool("toFront", false);
-        paperAnimator.SetBool("toBack", false);
-        paperAnimator.SetBool("toLeft", false);
-        paperAnimator.SetBool("toRight", false);
+        //if (myAnimator.gameObject.activeSelf)
+        //{
+            myAnimator.SetBool("toFront", false);
+            myAnimator.SetBool("toBack", false);
+            myAnimator.SetBool("toLeft", false);
+            myAnimator.SetBool("toRight", false);
+        //}
+
+        //if (paperAnimator.gameObject.activeSelf)
+        //{
+            paperAnimator.SetBool("toFront", false);
+            paperAnimator.SetBool("toBack", false);
+            paperAnimator.SetBool("toLeft", false);
+            paperAnimator.SetBool("toRight", false);
+        //}
+
         cheat.SetActive(false);
+        cheat.transform.position = cheat_default_position;
     }
 
     private void TryToCopy()
@@ -190,6 +208,7 @@ public class StudentManager : MonoBehaviour
         var right = direction.x < 0;
         var left = direction.x > 0;
 
+        cheat.transform.position = cheat_default_position;
         //Debug.Log(this.gameObject.name + back + right);
         if (back)
         {
@@ -271,11 +290,11 @@ public class StudentManager : MonoBehaviour
             }
         }
         //O outro Autista
-        //if (col.gameObject.tag.Equals("RangeAnswerQuestionCollider"))
-        //{
-            //Debug.Log("O professor tocou-me");
+        if (col.gameObject.tag.Equals("RangeAnswerQuestionCollider"))
+        {
+            //Debug.Log("O professor tocou-me " + this.gameObject.name);
             Question.OnTriggerEnter(col);
-        //}
+        }
     }
 
     private void Busted(PlayerController teacher_script)

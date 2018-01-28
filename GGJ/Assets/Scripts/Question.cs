@@ -30,7 +30,7 @@ namespace Assets.Scripts {
 //        public int TimeToRemoveDoubt 2 = 2;
         private bool _questioning = false;
 
-        public void Start()
+        void Start()
         {
             State = new NoQuestion();
             this.UpdateStateObjs();
