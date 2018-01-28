@@ -1983,6 +1983,7 @@ MonoBehaviour:
   TimeLeftText: {fileID: 1053272016}
   NumberTotalQuestionsInLevel: 0
   QuestionsIncrementalValue: 1
+  AvgMax: 9.5
   LevelTime: 60
   MaxSimoultaneousQuestionsInRoom: 3
   MaxCopiesInRoom: 8

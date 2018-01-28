@@ -18,6 +18,7 @@ public class StudentManager : MonoBehaviour
     public int QuestionProbability = 13;
     public int TimeToSendAnswer = 3;
 
+    public float ExerciseCopyValue = 5.0f;
     //public GameObject gameManagerOBJ;
     private GameManager gameManager;
     public GameObject QuestionManagerGameObject;
@@ -133,7 +134,7 @@ public class StudentManager : MonoBehaviour
     {
         if (Receiving && _currentScore < 20)
         {
-            _currentScore += 5f;
+            _currentScore += ExerciseCopyValue;
             _currentScore = Math.Min(_currentScore, 20);
         }
     }
