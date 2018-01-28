@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public Text ScoreText;
+    public Text TimeLeftText;
 
 
     public int NumberTotalQuestionsInLevel = 10;
@@ -48,6 +51,9 @@ public class GameManager : MonoBehaviour
 
         QuestionsIncrementalPeriod = ((LevelTime * 0.66f)/NumberTotalQuestionsInLevel  ) * QuestionsIncrementalValue;
         CurrentMaxQuestions = 0;
+
+        ScoreText.text = 0.ToString();
+        TimeLeftText.text = LevelRemainingTime.ToString();
     }
 
     private float accumulated = 0;
@@ -55,9 +61,11 @@ public class GameManager : MonoBehaviour
     {
         accumulated += Time.deltaTime;
         AccumulatorTimeQuestionsIncremental += Time.deltaTime;
-        if (accumulated > 20)
+        if (accumulated > 0.5f)
         {
-            accumulated -= 20;
+            accumulated -= 0.5f;
+            UpdateScoreUI();
+
             this.PrintScore();
         }
 
@@ -77,7 +85,7 @@ public class GameManager : MonoBehaviour
             LevelRemainingTime = LevelTime;
         }
 
-        
+
         //    foreach (var professor in _professors) {
         //        foreach (var student in _students)
         //        {
@@ -85,6 +93,20 @@ public class GameManager : MonoBehaviour
         //        }
         //    }
 
+    }
+
+    private void UpdateScoreUI()
+    {
+        int timeLeft = (int) LevelRemainingTime;
+        var totalTime = LevelTime;
+        var percentageTimeLevel = LevelRemainingTime / LevelTime;
+
+        var avgClass = CalculateClassAverage();
+
+        //this.ScoreText.text = timeLeft.ToString();
+        this.ScoreText.text = avgClass.ToString();
+        this.TimeLeftText.text = timeLeft.ToString();   
+        //Update Score in UI
     }
 
     private void FinishLevelTime()

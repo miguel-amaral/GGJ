@@ -1425,7 +1425,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1542733500792834}
-  m_LocalRotation: {x: -0.5983457, y: 0.3553626, z: 0.6137641, w: -0.37281823}
+  m_LocalRotation: {x: -0.59834576, y: 0.35536262, z: 0.61376417, w: -0.37281826}
   m_LocalPosition: {x: -0.00096636225, y: 0.00027595952, z: -0.00002420752}
   m_LocalScale: {x: 1.0000099, y: 1.0000483, z: 1.0000352}
   m_Children:
@@ -2098,7 +2098,9 @@ MonoBehaviour:
   QuestionProbability: 50
   TimeToSendAnswer: 3
   QuestionManagerGameObject: {fileID: 1078075554245310}
-  paper: {fileID: 0}
+  myAnimator: {fileID: 0}
+  paperAnimator: {fileID: 0}
+  cheat: {fileID: 0}
 --- !u!114 &114825550709132056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2114,9 +2116,13 @@ MonoBehaviour:
   GREEN_QUESTION: {fileID: 1853601415860538}
   YELLOW_QUESTION: {fileID: 1332409459283862}
   RED_QUESTION: {fileID: 1169189536604444}
+  speed: 0
   TimeGreenToYellow: 3
   TimeYellowToRed: 3
   TimeRedToBust: 3
+  sfx:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!136 &136010827899096228
 CapsuleCollider:
   m_ObjectHideFlags: 1

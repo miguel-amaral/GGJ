@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,10 @@ public class PlayerController : MonoBehaviour
     public int BustedStudents { get; set; }
     private Animator teacherAnimator;
 
+    public string player_string;
+    private string horizontal_axis_name;
+    private string vertical_axis_name;
+
     // Use this for initialization
     void Start ()
 	{
@@ -16,6 +21,13 @@ public class PlayerController : MonoBehaviour
 	    BustedStudents = 0;
         teacherAnimator = GetComponent<Animator>();
 
+	    var keyboard = player_string.Equals("P1")
+	        ? PlayerPrefs.GetInt("P1_Keyboard") == 1
+	        : PlayerPrefs.GetInt("P2_Keyboard") == 1;
+
+
+        horizontal_axis_name = player_string + "_Horizontal_" + (keyboard?"Keyboard":"Gamepad") ;
+	    vertical_axis_name = player_string + "_Vertical_" + (keyboard ? "Keyboard" : "Gamepad");
     }
 	
 	// TeacherIsAway is called once per frame
@@ -26,8 +38,8 @@ public class PlayerController : MonoBehaviour
 
         //   var move_vector = (Vector3.right * hor_axis + Vector3.forward * ver_axis)* PlayerSpeed;
         //   this.rb.AddForce(move_vector);
-	    var axis_hor = Input.GetAxisRaw("Horizontal");
-	    var axis_ver = Input.GetAxisRaw("Vertical");
+	    var axis_hor = Input.GetAxisRaw(horizontal_axis_name);
+	    var axis_ver = Input.GetAxisRaw(vertical_axis_name);
 
 
 
