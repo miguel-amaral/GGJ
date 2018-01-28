@@ -3015,6 +3015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpeed: 50
   player_string: P2
+  DelayBetweenActions: 1
 --- !u!136 &136235571460213742
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3024,7 +3025,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 4
+  m_Radius: 3
   m_Height: 20
   m_Direction: 1
   m_Center: {x: 0, y: 10, z: 0}
