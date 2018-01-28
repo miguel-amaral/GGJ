@@ -16,5 +16,23 @@ public class MainMenu : MonoBehaviour {
 		Application.Quit();
 	}
 
+	public void PlayKindergarden()
+	{
+		SceneManager.LoadScene("Kindergarden");
+	}
 
+	public void PlayBasicSchool()
+	{
+		SceneManager.LoadScene("BasicSchool");
+	}
+
+	public void PlayHighSchool()
+	{
+		SceneManager.LoadScene("HighSchool");
+	}
+
+	public void PlayUniversity()
+	{
+		SceneManager.LoadScene("University");
+	}
 }

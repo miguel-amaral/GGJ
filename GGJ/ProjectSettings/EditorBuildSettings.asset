@@ -10,4 +10,13 @@ EditorBuildSettings:
     guid: 3b33edc4cd4f7ae49b701ba6b81094b9
   - enabled: 1
     path: Assets/Scenes/prototip.unity
-    guid: 00000000000000000000000000000000
+    guid: 2ae34fc85394e2144b7704d6aa452609
+  - enabled: 1
+    path: Assets/Scenes/Kindergarden.unity
+    guid: 4725894daa4fc4949bd829b9d819b7ea
+  - enabled: 1
+    path: Assets/Scenes/BasicSchool.unity
+    guid: 644257511ecfcb6448662fef6695467d
+  - enabled: 1
+    path: Assets/Scenes/University.unity
+    guid: 454cd32e8984b02409791c066c6ffee5
