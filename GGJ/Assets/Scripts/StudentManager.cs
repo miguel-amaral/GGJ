@@ -31,9 +31,9 @@ public class StudentManager : MonoBehaviour
 
     private float TimeAccumulated = 0;
 
-    private Animator myAnimator;
-
-    public GameObject paper;
+    public Animator myAnimator;
+    public Animator paperAnimator;
+    public GameObject cheat;
 
 
     // Use this for initialization
@@ -112,7 +112,11 @@ public class StudentManager : MonoBehaviour
         myAnimator.SetBool("toBack", false);
         myAnimator.SetBool("toLeft", false);
         myAnimator.SetBool("toRight", false);
-
+        paperAnimator.SetBool("toFront", false);
+        paperAnimator.SetBool("toBack", false);
+        paperAnimator.SetBool("toLeft", false);
+        paperAnimator.SetBool("toRight", false);
+        cheat.SetActive(false);
     }
 
     private void TryToCopy()
@@ -190,19 +194,31 @@ public class StudentManager : MonoBehaviour
         if (back)
         {
             myAnimator.SetBool("toBack", true);
+            cheat.SetActive(true);
+            paperAnimator.SetBool("toBack", true);
+            
         }
         else if (forward)
         {
             myAnimator.SetBool("toFront", true);
+            cheat.SetActive(true);
+            paperAnimator.SetBool("toFront", true);
+          
         }
         else if (right)
         {
             myAnimator.SetBool("toRight", true);
+            cheat.SetActive(true);
+            paperAnimator.SetBool("toRight", true);
+           
         }
         else if (left)
         {
             myAnimator.SetBool("toLeft", true);
-
+            cheat.SetActive(true);
+            paperAnimator.SetBool("toLeft", true);
+           
+ 
         }
     }
 
@@ -248,6 +264,7 @@ public class StudentManager : MonoBehaviour
         if (col.gameObject.tag.Equals("RangeCopyCollider"))
         {
             nearTeacher++;
+            myAnimator.SetBool("prof", true);
             if (Sending || Receiving)
             {
                 Busted(col.gameObject.GetComponentInParent<PlayerController>());
@@ -272,6 +289,7 @@ public class StudentManager : MonoBehaviour
     public void OnTriggerExit(Collider col) {
         if (col.gameObject.tag.Equals("RangeCopyCollider")) {
             nearTeacher--;
+            myAnimator.SetBool("prof", false);
         }
         //O outro Autista
         //if (col.gameObject.tag.Equals("Professor")) {
@@ -320,9 +338,9 @@ public class StudentManager : MonoBehaviour
             var vector_percentage = direction * percentage; 
             Gizmos.DrawLine(this.transform.position, this.transform.position+vector_percentage);
 
-            //paper.transform.Translate(this.transform.position.x, this.transform.position.x + vector_percentage.x, Time.deltaTime);
+         
 
-
+        
 
         }
         //Gizmos.color = Color.black;
