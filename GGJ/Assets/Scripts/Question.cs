@@ -23,12 +23,16 @@ namespace Assets.Scripts {
         public GameObject YELLOW_QUESTION;
         public GameObject RED_QUESTION;
 
+        public float speed;
+
         public int TimeGreenToYellow = 3;
         public int TimeYellowToRed   = 3;
         public int TimeRedToBust     = 3;
 
 //        public int TimeToRemoveDoubt 2 = 2;
         private bool _questioning = false;
+
+        public AudioSource [] sfx = new AudioSource [2];
 
         void Start()
         {
@@ -39,6 +43,7 @@ namespace Assets.Scripts {
             if (gameManager == null) {
                 Debug.LogError("Question " + this.gameObject.name + "Without Game Manager");
             }
+
         }
         public void Update()
         {
@@ -60,6 +65,8 @@ namespace Assets.Scripts {
             var percentage = RemainingTimeForDisappear / MaxTimeQuestionDisappear;
             this.gameObject.transform.localScale = new Vector3(percentage,percentage,percentage);
             //State.UpdateSizeQuestion(percentage);
+
+            this.gameObject.transform.Rotate(Vector3.up, speed * Time.deltaTime);
                 
         }
         private void TeacherIsHelping(float deltaTime)
@@ -70,6 +77,7 @@ namespace Assets.Scripts {
             {
                 QuestionSolved();
             }
+          
         }
         private void TeacherIsAway(float deltaTime)
         {
@@ -89,6 +97,9 @@ namespace Assets.Scripts {
             UpdateStateObjs();
             this.transform.localScale = new Vector3(1, 1, 1);
             gameManager.ActivateQuestion();
+
+  
+            sfx[0].Play();
         }
 
         private void QuestionSolved()
@@ -105,6 +116,8 @@ namespace Assets.Scripts {
             _questioning = false;
             gameManager.StopQuestions();
             //throw new NotImplementedException();
+           
+            sfx[1].Play();
         }
 
         public void QuestionTimeUp()

@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class StudentManager : MonoBehaviour
 {
@@ -98,6 +100,21 @@ public class StudentManager : MonoBehaviour
             TimeAccumulated -= TryToCopyEveryAmountOfSeconds;
             TryToCopy();
         }
+
+        EndAnimationAskQuestion();
+    }
+
+    private void EndAnimationAskQuestion()
+    {
+        if (!isQuestionActive())
+        {
+            myAnimator.SetBool("help", false);
+        }
+    }
+
+    private bool isQuestionActive()
+    {
+        return Question.Questioning();
     }
 
     private void EndCopy()
@@ -180,6 +197,8 @@ public class StudentManager : MonoBehaviour
     }
 
     private void AskQuestion() {
+
+        myAnimator.SetBool("help", true);
         Question.ActivateQuestion();
     }
 
