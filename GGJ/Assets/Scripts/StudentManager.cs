@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class StudentManager : MonoBehaviour
 {
@@ -89,7 +91,7 @@ public class StudentManager : MonoBehaviour
             CopyRemainingTime -= Time.deltaTime;
             if (CopyRemainingTime <= 0)
             {
-                EndCopy();
+                CopySuccess();
                 StopCopying();
             }
         }
@@ -100,9 +102,23 @@ public class StudentManager : MonoBehaviour
         }
     }
 
-    private void EndCopy()
+    private bool CanSend()
     {
-        //throw new System.NotImplementedException();
+        return CanCopy();
+    }
+
+    private bool CanReceive()
+    {
+        return CanCopy() && _currentScore < 20;
+    }
+
+    private void CopySuccess()
+    {
+        if (Receiving && _currentScore < 20)
+        {
+            _currentScore += 5f;
+            _currentScore = Math.Min(_currentScore, 20);
+        }
     }
 
     private void StopCopying()
@@ -117,21 +133,21 @@ public class StudentManager : MonoBehaviour
         InteractingWith = null;
         if(temp!=null) temp.GetComponent<StudentManager>().StopCopying();
 
-        //if (myAnimator.gameObject.activeSelf)
-        //{
+        if (myAnimator.gameObject.activeSelf)
+        {
             myAnimator.SetBool("toFront", false);
             myAnimator.SetBool("toBack", false);
             myAnimator.SetBool("toLeft", false);
             myAnimator.SetBool("toRight", false);
-        //}
+        }
 
-        //if (paperAnimator.gameObject.activeSelf)
-        //{
+        if (paperAnimator.gameObject.activeSelf)
+        {
             paperAnimator.SetBool("toFront", false);
             paperAnimator.SetBool("toBack", false);
             paperAnimator.SetBool("toLeft", false);
             paperAnimator.SetBool("toRight", false);
-        //}
+        }
 
         cheat.SetActive(false);
         cheat.transform.position = cheat_default_position;
@@ -142,14 +158,14 @@ public class StudentManager : MonoBehaviour
         var probability = Random.Range(0, 100);
         var probability_sum = 0;
         var tempNeighbours = new List<StudentManager>();
-        if (CanCopy())
+        if (CanSend())
         {
             if (probability < CopyProbability)
             {
                 foreach (var neighbour in _neighbours)
                 {
                     var neightbour_script = neighbour.GetComponent<StudentManager>();
-                    if (neightbour_script.CanCopy()) {
+                    if (neightbour_script.CanReceive()) {
                         tempNeighbours.Add(neightbour_script);
                     }
                 }
@@ -196,13 +212,12 @@ public class StudentManager : MonoBehaviour
 
     private void QuestionRightArm()
     {
-        Debug.Log("Braco RIGHT");
+       // Debug.Log("Braco RIGHT");
     }
 
     private void QuestionLeftArm()
     {
-        //throw new System.NotImplementedException();
-        Debug.Log("Braco LEFT");
+        //Debug.Log("Braco LEFT");
     }
 
     private bool CanQuestion()
@@ -394,5 +409,10 @@ public class StudentManager : MonoBehaviour
     private void sendPaper()
     {
 
+    }
+
+    public float GetTestScore()
+    {
+        return _currentScore;
     }
 }
