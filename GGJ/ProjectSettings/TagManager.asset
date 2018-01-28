@@ -8,6 +8,7 @@ TagManager:
   - Student
   - RangeCopyCollider
   - RangeAnswerQuestionCollider
+  - Obstacle
   layers:
   - Default
   - TransparentFX

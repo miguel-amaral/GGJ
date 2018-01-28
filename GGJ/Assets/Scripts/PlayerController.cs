@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public string player_string;
     private string horizontal_axis_name;
     private string vertical_axis_name;
+    private string action_name_button;
+
+    private GameObject closest;
 
     // Use this for initialization
     void Start ()
@@ -28,7 +31,8 @@ public class PlayerController : MonoBehaviour
 
         horizontal_axis_name = player_string + "_Horizontal_" + (keyboard?"Keyboard":"Gamepad") ;
 	    vertical_axis_name = player_string + "_Vertical_" + (keyboard ? "Keyboard" : "Gamepad");
-    }
+	    action_name_button = player_string + "_Action_" + (keyboard ? "Keyboard" : "Gamepad"); ;
+	}
 	
 	// TeacherIsAway is called once per frame
 	void FixedUpdate ()
@@ -53,6 +57,12 @@ public class PlayerController : MonoBehaviour
             teacherAnimator.SetBool("walk", false);
         }
 
+	    var action = Input.GetButton(action_name_button);
+	    if (action)
+	    {
+            Debug.Log("Action");
+	    }
+	    
 
         //transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
 
@@ -76,4 +86,8 @@ public class PlayerController : MonoBehaviour
         BustedStudents++;
     }
 
+    public void setClosest(GameObject obstacleManager)
+    {
+        this.closest = obstacleManager;
+    }
 }

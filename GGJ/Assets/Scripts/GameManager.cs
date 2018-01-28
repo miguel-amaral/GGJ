@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -111,7 +113,41 @@ public class GameManager : MonoBehaviour
 
     private void FinishLevelTime()
     {
+        float quality = 1;
+        if (TotalQuestionsMade != 0)
+        {
+            quality = (NumberQuestionsSolved * 1.0f) / (TotalQuestionsMade );
+        }
+
+        int stars = 0;
+        foreach (var scoresLetter in ScoresLetters) {
+            if (scoresLetter <= quality) {
+                stars++;
+            }
+        }
+
+        string letter;
+        switch (stars)
+        {
+            case 3:
+                letter = "S";
+                break;
+            case 2:
+                letter = "A";
+                break;
+            case 1:
+                letter = "C";
+                break;
+            default:
+                letter = "F";
+                break;
+        }
+
         Debug.LogError("GAME OVER BOY : " + CalculateFinalScore() );
+        ScoreKeeper.KeepingScore = true;
+        ScoreKeeper.Letter = letter;
+        ScoreKeeper.Score = CalculateClassAverage();
+        SceneManager.LoadScene("_menu");
     }
 
     private int CalculateFinalScore()

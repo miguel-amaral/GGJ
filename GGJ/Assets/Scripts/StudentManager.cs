@@ -168,6 +168,12 @@ public class StudentManager : MonoBehaviour
         cheat.transform.position = cheat_default_position;
     }
 
+    public void RecalculateNeighbours()
+    {
+        //raycast
+        //calculate neighbours
+    }
+
     private void TryToCopy()
     {
         var probability = Random.Range(0, 100);
