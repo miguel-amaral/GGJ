@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -18,9 +19,14 @@ public class MenuManager : MonoBehaviour
             this.ActivateEndScente();
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void PlayGame() {
+        SceneManager.LoadScene("_menu");
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
